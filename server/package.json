@@ -4,9 +4,7 @@
   "description": "wuziqi-server with Koa2",
   "main": "out/main.js",
   "scripts": {
-    "test": "supervisor out/main.js",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w"
+    "test": "supervisor out/main.js"
   },
   "keywords": [
     "koa2-router"
