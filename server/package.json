@@ -1,0 +1,29 @@
+{
+  "name": "wuziqi-server",
+  "version": "1.0.0",
+  "description": "wuziqi-server with Koa2",
+  "main": "out/main.js",
+  "scripts": {
+    "test": "supervisor out/main.js",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
+  },
+  "keywords": [
+    "koa2-router"
+  ],
+  "author": "px",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.5",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.17.5",
+    "sha1": "^1.1.1",
+    "tslint": "^5.10.0"
+  }
+}

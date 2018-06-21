@@ -1,0 +1,49 @@
+html,body{width: 100%;height: 100%;margin:0;padding:0;overflow: auto;}
+#table{
+	
+	
+	text-align: center;
+	margin-top: 5px;
+	
+	
+	
+}
+#tbody{
+	
+	display: inline-block;
+
+	
+}
+.td{
+	background: #d3905b;
+	border:1px solid black;
+	float: left;
+	
+}
+.tr{
+	border-left:1px solid black;
+	border-right:1px solid black;
+	position: relative;
+	
+
+}
+.tr:first-child{
+	border-top: 1px solid black;
+	}
+.tr:last-child{border-bottom: 1px solid black;}
+
+.tr:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+#tbody:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+img{max-width: 100%;visibility: hidden;}
+img.bai{position: relative;margin-top: -100%;}
+
