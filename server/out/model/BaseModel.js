@@ -30,4 +30,4 @@ class BaseModel {
     }
 }
 module.exports = BaseModel;
-//# sourceMappingURL=baseModel.js.map
+//# sourceMappingURL=BaseModel.js.map

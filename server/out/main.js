@@ -1,19 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const http = require("http");
-const BaseModel = require("./model/BaseModel");
-console.log(BaseModel, 6669);
+const Koa = require("koa");
+const cors = require("koa2-cors"); // 用来解决跨域问题
+const bodyParser = require("koa-bodyparser");
 /**
- * name
+ * 服务器类
  */
-// class Haha extends BaseModel {
-//     constructor(parameters) {
-//         super();
-//     }
-// }
-var port = process.env.port || 1337;
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-}).listen(port);
+/**
+ * WuziqiServer
+ */
+class WuziqiServer {
+    constructor() {
+        this.app = null;
+        this.app = new Koa();
+    }
+    init() {
+        this.app.use(bodyParser());
+        //跨域
+        this.app.use(cors({
+            origin: function (ctx) {
+                return "*"; // 允许来自所有域名请求
+            },
+            exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+            maxAge: 5,
+            credentials: true,
+            allowMethods: ['GET', 'POST', 'DELETE'],
+            allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+        }));
+        // routes(this.app);
+        //端口监听
+        this.app.listen(3009);
+    }
+}
+const wuziqiServer = new WuziqiServer();
+wuziqiServer.init();
 //# sourceMappingURL=main.js.map
