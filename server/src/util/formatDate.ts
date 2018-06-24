@@ -1,5 +1,5 @@
 
-module.exports =function formatDate( )
+export = function formatDate( )
 { 
     let now = new Date();
     let year=now.getFullYear(),

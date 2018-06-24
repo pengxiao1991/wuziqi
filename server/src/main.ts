@@ -1,7 +1,12 @@
 import Koa = require('koa');
 import cors = require('koa2-cors'); // 用来解决跨域问题
-import bodyParser = require('koa-bodyparser');
-import routes = require('./controller/routes/index');
+import bodyParser = require('koa-bodyparser'); //解决post请求体解析问题
+import staticServer = require('koa-static'); //静态文件服务器
+import path = require('path'); //静态文件服务器
+
+import RouterController = require('./controller/routes/index');
+
+require('dotenv').config();
 
 
 /**
@@ -29,8 +34,13 @@ class WuziqiServer {
             allowMethods: ['GET', 'POST', 'DELETE'],
             allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
         }));
+        
+        // 静态资源不用服务端处理
+        this.app.use(staticServer(path.join(__dirname, '..', 'static')));
+        
+        // app 挂载路由模块
+        new RouterController(this.app).init();
 
-        // routes(this.app);
 
         //端口监听
         this.app.listen(3009);
@@ -38,3 +48,5 @@ class WuziqiServer {
 }
 const wuziqiServer = new WuziqiServer();
 wuziqiServer.init();
+
+

@@ -2,7 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Koa = require("koa");
 const cors = require("koa2-cors"); // 用来解决跨域问题
-const bodyParser = require("koa-bodyparser");
+const bodyParser = require("koa-bodyparser"); //解决post请求体解析问题
+const staticServer = require("koa-static"); //静态文件服务器
+const path = require("path"); //静态文件服务器
+const RouterController = require("./controller/routes/index");
+require('dotenv').config();
 /**
  * 服务器类
  */
@@ -27,7 +31,10 @@ class WuziqiServer {
             allowMethods: ['GET', 'POST', 'DELETE'],
             allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
         }));
-        // routes(this.app);
+        // 静态资源不用服务端处理
+        this.app.use(staticServer(path.join(__dirname, '..', 'static')));
+        // app 挂载路由模块
+        new RouterController(this.app).init();
         //端口监听
         this.app.listen(3009);
     }
