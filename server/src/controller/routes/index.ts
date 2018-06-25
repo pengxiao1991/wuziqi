@@ -15,10 +15,12 @@ class RouterController {
 	public app = null;
 	public init() {
 		// 错误处理
-		this.app.use((ctx,next) => {
+		this.app.use(async (ctx,next) => {
 			try {
-				next();
+				// 当next为异步方法时，catch无法监测到回调里的错误，因此要加上await
+				await next();
 			} catch (error) {
+				
 				// 用于捕捉所有路由请求的错误
 				ctx.response.status = 200;
 				ctx.body = error;

@@ -1,12 +1,15 @@
 // TypeScript file
 const mysql = require('mysql');
+require('dotenv').config();
+
 
 const POOL = mysql.createPool({
   host:process.env.DB_HOST,
   user:process.env.DB_USER,
   password:process.env.DB_PASS,
-  database:process.env.DB_Name,
+  database:process.env.DB_Name
 });
+
 
 class BaseModel {
     constructor() {
@@ -29,6 +32,9 @@ class BaseModel {
                 }
             })
         });
+    }
+    protected valueToStr(value) {
+        return typeof value == 'number'?value:`'${value}'`;
     }
     protected add (table,keyArr,valueArr) {
         return this.handlerSQL(`INSERT INTO ${process.env.DB_Name}.${table} (${keyArr.toString()}) VALUES (${valueArr.toString()})`);

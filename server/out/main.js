@@ -6,7 +6,6 @@ const bodyParser = require("koa-bodyparser"); //解决post请求体解析问题
 const staticServer = require("koa-static"); //静态文件服务器
 const path = require("path"); //静态文件服务器
 const RouterController = require("./controller/routes/index");
-require('dotenv').config();
 /**
  * 服务器类
  */

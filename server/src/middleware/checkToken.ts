@@ -2,7 +2,7 @@
 import jwt = require('jsonwebtoken');
 export = function (ctx,next) {
   let tokenContain = ctx.body || ctx.query || ctx.headers;
-  let token = tokenContain.token || tokenContain["authorization"];
+  let token = tokenContain.access_token || tokenContain["authorization"];
   // let token = ctx.request.headers['authorization'].split(' ')[1];
 
   if (token) {

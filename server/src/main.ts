@@ -6,7 +6,7 @@ import path = require('path'); //静态文件服务器
 
 import RouterController = require('./controller/routes/index');
 
-require('dotenv').config();
+
 
 
 /**
