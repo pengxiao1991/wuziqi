@@ -22,8 +22,10 @@ export default {
 </script>
 
 <style lang="css">
-
-  #app{
+  html,body,#app {
+    margin: 0%;
+    width: 100%;
     height: 100%;
   }
+ 
 </style>

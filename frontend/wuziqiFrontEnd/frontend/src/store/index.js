@@ -1,12 +1,23 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
+import Vue from 'vue';
 Vue.use(Vuex);
-// import state from './states'
-// import actions from './actions'
-// import mutations from './mutations'
-// const store =  new Vuex.Store({
-//     state,
-//     mutations,
-//     actions
-// })
-// export default store;
+export default new Vuex.Store({
+    state: {
+        access_token: ''
+    },
+    mutations: {
+       
+        updateAccessToken(state, payload) {
+            state.access_token = payload;
+        },
+       
+    },
+    getters: {
+      
+        getAccessToken: state => {
+            return state.access_token;
+        }
+      
+    }
+});
+

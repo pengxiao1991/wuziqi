@@ -34,6 +34,8 @@ class WuziqiServer {
             allowMethods: ['GET', 'POST', 'DELETE'],
             allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
         }));
+
+        // 缓存处理模块
         this.app.use(async (ctx, next) => {
             await next();
             if (ctx.fresh) {

@@ -1,6 +1,8 @@
 
 
-import NotFound from '../components/NotFound.vue'
+import login from '../components/login.vue';  // 登录模块
+import home from '../components/home.vue';  // 游戏模块
+
 
 export default [
   
@@ -8,7 +10,16 @@ export default [
   {
     //前台路由
     path: '/',
-    component: NotFound,
+    component: login,
+    
+  },
+  {
+    //前台路由
+    path: '/auth',
+    children:[{
+      path:'/home',
+      component:home
+    }]
     
   }
   //

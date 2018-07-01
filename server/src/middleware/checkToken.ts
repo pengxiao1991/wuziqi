@@ -2,7 +2,7 @@
 import jwt = require('jsonwebtoken');
 export = async function (ctx, next) {
 	let tokenContain = ctx.request.body || ctx.headers;
-	let token = tokenContain.access_token || tokenContain["authorization"];
+	let token = tokenContain.token || tokenContain["authorization"];
 	if (token) {
 		await new Promise((resolve, reject) => {
 			jwt.verify(token, process.env.JWT_SECRET, (error, decode) => {
