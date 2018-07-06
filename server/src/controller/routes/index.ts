@@ -2,6 +2,8 @@
 import Router = require('koa-router');
 import checkToken = require('../../middleware/checkToken');
 import login = require('./login/login');
+import user = require('./user/user');
+
 
 const router = new Router();
 
@@ -35,6 +37,8 @@ class RouterController {
 		this.app.use(router.routes()).use(router.allowedMethods());
 
 		router.use('/api/login',login.routes(),login.allowedMethods());
+		router.use('/api/user',user.routes(),user.allowedMethods());
+
 		// router.use('/api/classify',classify.routes(),classify.allowedMethods());
 		// router.use('/api/article',article.routes(),article.allowedMethods());
 

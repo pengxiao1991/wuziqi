@@ -1,7 +1,7 @@
 
 
 import Router = require('koa-router');
-import user  =  require('../../../model/user');
+import userModel  =  require('../../../model/userModel');
 const router = new Router();
 
 import createToken = require('../../../util/createToken');
@@ -11,7 +11,7 @@ router
 .post('/login',async(ctx)=>{
     let name = ctx.request.body.account;
     let password = sha1(ctx.request.body.password);
-    await user.login(name,password)
+    await userModel.login(name,password)
         .then(data => {
             
             if (data['length']) {
@@ -19,8 +19,7 @@ router
                 ctx.body = {
                     code: 200,
                     data:data,
-                    token: createToken(name + data[0]['user_id'] + Date.now())
-
+                    token: createToken(JSON.stringify({name:name,user_id:data[0]['user_id'],timestamp:Date.now()}))
                 };
                 
             } else {
@@ -43,7 +42,7 @@ router
 })
 .post('/reg',async (ctx)=>{
    
-   await user.register(ctx.request.body.account,sha1(ctx.request.body.password))
+   await userModel.register(ctx.request.body.account,sha1(ctx.request.body.password))
     .then((data) => {
         ctx.body = {
             code: 200,

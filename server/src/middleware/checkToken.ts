@@ -2,10 +2,10 @@
 import jwt = require('jsonwebtoken');
 export = async function (ctx, next) {
 	let tokenContain = ctx.request.body || ctx.headers;
-	let token = tokenContain.token || tokenContain["authorization"];
-	if (token) {
+	let access_token = tokenContain.access_token || tokenContain["authorization"];
+	if (access_token) {
 		await new Promise((resolve, reject) => {
-			jwt.verify(token, process.env.JWT_SECRET, (error, decode) => {
+			jwt.verify(access_token, process.env.JWT_SECRET, (error, decode) => {
 				if (error) {
 					ctx.body = {
 						code: 401,
@@ -13,9 +13,11 @@ export = async function (ctx, next) {
 					};
 				} else if (decode) {
 					resolve(decode);
-					next();
 				}
 			});
+		}).then(async (decode) => {
+			ctx.state.user_id = JSON.parse(decode['name'])['user_id']
+			await next();
 		})
 
 	}

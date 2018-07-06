@@ -4,17 +4,16 @@
   position: relative;
 }
 .login .wrap {
-	position: absolute;
-	left: 20%;
-	top: 30%;
+  position: absolute;
+  left: 20%;
+  top: 30%;
 }
 .login .wrap .password {
-	margin-top: 18px;
-	
+  margin-top: 18px;
 }
 .login .wrap .button {
-	text-align: center;
-	margin-top: 30px;
+  text-align: center;
+  margin-top: 30px;
 }
 </style>
 
@@ -44,44 +43,39 @@
 export default {
   data() {
     return {
-		account:'',
-		password:''
-	};
+      account: "",
+      password: ""
+    };
   },
   mounted() {
-	  console.log(this.axiosService);
-	  if (localStorage.getItem('jwt')) {
-		  this.goHome();
-	  }
-   
+    if (localStorage.getItem("jwt")) {
+      this.goHome();
+    }
   },
   methods: {
     goHome() {
-        this.$router.replace({ path: "/auth/home" });
+      this.$router.push({ path: "/auth/home" });
     },
-	async register() {
-		let result = await this.axiosService.localReg({
-			account:this.account,
-			password:this.password
-		})
+    async register() {
+      let result = await this.axiosService.localReg({
+        account: this.account,
+        password: this.password
+      });
       if (result.data.token) {
-        localStorage.setItem('jwt',result.data.token);
-		this.goHome();
-      } 
-
-	},
-	async loginUp() {
-		let result = await this.axiosService.localLogin({
-			account:this.account,
-			password:this.password
-		});
-		if (result.data.token) {
-			localStorage.setItem('jwt',result.data.token);
-			this.goHome();
-
-
-		} 
- 	}
+        localStorage.setItem("jwt", result.data.token);
+        this.goHome();
+      }
+    },
+    async loginUp() {
+      let result = await this.axiosService.localLogin({
+        account: this.account,
+        password: this.password
+      });
+      if (result.data.token) {
+        localStorage.setItem("jwt", result.data.token);
+        this.goHome();
+      }
+    }
   }
 };
 </script>

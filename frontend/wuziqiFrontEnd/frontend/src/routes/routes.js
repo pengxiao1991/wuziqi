@@ -15,11 +15,8 @@ export default [
   },
   {
     //前台路由
-    path: '/auth',
-    children:[{
-      path:'/home',
-      component:home
-    }]
+    path: '/auth/home',
+    component:home
     
   }
   //

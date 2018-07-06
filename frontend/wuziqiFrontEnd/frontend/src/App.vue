@@ -1,5 +1,15 @@
+<style>
+@import url(./resource/css/public.css);
+ html,body,#app {
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+
 <template lang="html">
-  <div id="app" v-cloak>
+  <div id="app">
       <router-view></router-view>
 </div>
 </template>
@@ -20,12 +30,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-  html,body,#app {
-    margin: 0%;
-    width: 100%;
-    height: 100%;
-  }
- 
-</style>
